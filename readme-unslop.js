@@ -2,7 +2,7 @@
 'use strict';
 const fs = require('fs');
 
-const FILLER = ['seamlessly','seamless','robust','blazing-fast','blazing fast','lightning-fast','cutting-edge','state-of-the-art','game-changing','game changer','revolutionary','leverage','leverages','harness the power','supercharge','effortless','effortlessly','powerful','comprehensive','elevate','unlock the','next-generation','best-in-class','delve','streamline','holistic','world-class'];
+const FILLER = ['enterprise-grade','user-friendly','intuitive','lightning fast','seamlessly','seamless','robust','blazing-fast','blazing fast','lightning-fast','cutting-edge','state-of-the-art','game-changing','game changer','revolutionary','leverage','leverages','harness the power','supercharge','effortless','effortlessly','powerful','comprehensive','elevate','unlock the','next-generation','best-in-class','delve','streamline','holistic','world-class'];
 const EMOJI = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B50}\u{2705}\u{274C}]/u;
 const BOILER = {
   roadmap: /^(roadmap|future plans|upcoming features)$/i,
@@ -72,13 +72,13 @@ function lint(text) {
   if (nonEmpty > 15 && bullets / nonEmpty > 0.55) add('over-bulleted', 1, 6, `${Math.round(100 * bullets / nonEmpty)}% of lines are bullets`, 'Turn some lists into sentences.');
   // bold-label bullets: "- **Fast**: ..."
   const bl = lines.filter(l => /^\s*[-*]\s+(\*\*[^*]+\*\*|[^\w\s]\s*\*\*[^*]+\*\*)\s*[:\-–—]/.test(l)).length;
-  if (bl >= 4) add('bold-label-bullets', 1, 4, `${bl} bullets in the "**Label**: blurb" pattern`, 'Write one plain sentence per real feature.');
+  if (bl >= 3) add('bold-label-bullets', 1, 4, `${bl} bullets in the "**Label**: blurb" pattern`, 'Write one plain sentence per real feature.');
 
   // generic section skeleton
   const titles = secs.map(s => plain(s.title).toLowerCase());
   const stock = ['features','installation','usage','contributing','license','roadmap','acknowledgments','acknowledgements','table of contents','prerequisites','getting started','support'];
   const hit = titles.filter(t => stock.includes(t)).length;
-  if (secs.length >= 6 && hit / secs.length > 0.7) add('stock-skeleton', 1, 4, 'Nearly every heading is a stock section name', 'Lead with what problem this solves.');
+  if (secs.length >= 5 && hit / secs.length > 0.7) add('stock-skeleton', 1, 4, 'Nearly every heading is a stock section name', 'Lead with what problem this solves.');
 
   // em dashes
   const em = (text.match(/—/g) || []).length;

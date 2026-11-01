@@ -29,3 +29,9 @@ It checks structure and a fixed word list, not meaning. A human can write "robus
 `npm test`
 
 MIT licensed.
+
+`SKILL.md` in this repo tells a Claude agent how to run the linter and rewrite a README without inventing facts.
+
+## Tip jar
+
+This is free. If it saved you time, you can leave an optional tip (pay what you want, nothing is delivered in return): https://buy.polar.sh/polar_cl_kduMqMoli1UUGGy8BmIUCQEh99Dnk3fXlkCpU0OsYOk
