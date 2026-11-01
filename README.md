@@ -24,6 +24,21 @@ The weights are my guesses. Two fixtures in `test/fixtures/` show a sloppy file 
 
 It checks structure and a fixed word list, not meaning. A human can write `robust` and an AI can write a clean README, so treat the score as a prompt to reread, not a verdict. Code blocks and inline code are skipped for word checks.
 
+## Before and after
+
+[examples/before.md](examples/before.md) is a typical AI-style README. The linter flags emoji headings, badge walls, filler words (`seamless`, `enterprise-grade`), bold-label bullets, stock contributing text and an empty roadmap.
+
+```
+$ readme-unslop examples/before.md   # score above the limit, exit 1
+$ readme-unslop examples/after.md    # score 0/100
+```
+
+[examples/after.md](examples/after.md) is the same project rewritten with plain statements and a real usage example. Nothing in it is invented: the writer has to supply the true facts.
+
+## Claude Code plugin
+
+`.claude-plugin/marketplace.json` is included so the repo can act as a plugin marketplace. Status: partly checked against the current docs (name, owner, plugins array, `source`, `description`). The `skills` field is not confirmed. Treat it as unverified and open an issue if it fails for you.
+
 ## Tests
 
 `npm test`
