@@ -11,7 +11,7 @@ It is one file of Node with no dependencies. It reads a Markdown file, adds up p
 Output looks like this:
 
     README.md: score 68/100 (limit 30)
-      line 7  emoji-heading  Heading "✨ Features" starts with an emoji
+      line 7  emoji-heading  Heading "✨ Features" contains an emoji
           fix: Drop the emoji; the heading text is enough.
 
 ## What it checks

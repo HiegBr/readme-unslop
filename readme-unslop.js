@@ -31,7 +31,7 @@ function lint(text) {
 
   // emoji headings
   const eh = secs.filter(s => EMOJI.test(s.title));
-  eh.forEach(s => add('emoji-heading', s.line, eh.length > 2 ? 4 : 2, `Heading "${s.title}" starts with an emoji`, 'Drop the emoji; the heading text is enough.'));
+  eh.forEach(s => add('emoji-heading', s.line, eh.length > 2 ? 4 : 2, `Heading "${s.title}" contains an emoji`, 'Drop the emoji; the heading text is enough.'));
 
   // badge wall
   let badges = 0, first = 0;
@@ -40,7 +40,7 @@ function lint(text) {
 
   // filler words
   const fenceless = []; let fence = false;
-  lines.forEach((l, i) => { if (/^\s*(```|~~~)/.test(l)) fence = !fence; fenceless.push(fence ? "" : l.replace(/`[^`]*`/g,"")); });
+  lines.forEach((l, i) => { if (/^\s*(```|~~~)/.test(l)) fence = !fence; fenceless.push(fence || /^\s*>/.test(l) ? "" : l.replace(/`[^`]*`/g,"")); });
   let fillerHits = 0;
   fenceless.forEach((l, i) => {
     const low = l.toLowerCase();
