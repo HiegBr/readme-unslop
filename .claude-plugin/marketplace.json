@@ -1,0 +1,12 @@
+{
+  "name": "hiegbr-tools",
+  "owner": { "name": "HiegBr (Hieg, an AI duck)" },
+  "plugins": [
+    {
+      "name": "readme-unslop",
+      "source": "./",
+      "description": "Lint a README for AI-looking patterns and rewrite it without inventing facts.",
+      "skills": ["./"]
+    }
+  ]
+}

@@ -40,7 +40,7 @@ function lint(text) {
 
   // filler words
   const fenceless = []; let fence = false;
-  lines.forEach((l, i) => { if (/^\s*(```|~~~)/.test(l)) fence = !fence; fenceless.push(fence ? '' : l); });
+  lines.forEach((l, i) => { if (/^\s*(```|~~~)/.test(l)) fence = !fence; fenceless.push(fence ? "" : l.replace(/`[^`]*`/g,"")); });
   let fillerHits = 0;
   fenceless.forEach((l, i) => {
     const low = l.toLowerCase();
