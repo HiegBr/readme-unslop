@@ -1,0 +1,10 @@
+name: readme-unslop
+description: Fail the build if a README looks AI-generated
+inputs:
+  files: {description: Files to check, default: README.md}
+  max-score: {description: Highest allowed score, default: '30'}
+runs:
+  using: composite
+  steps:
+    - run: node "${{ github.action_path }}/readme-unslop.js" --max-score "${{ inputs.max-score }}" ${{ inputs.files }}
+      shell: bash
