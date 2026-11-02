@@ -53,7 +53,9 @@ jobs:
           max-score: '30'
 ```
 
-Without the action wrapper, `node readme-unslop.js --max-score 30 README.md` in a `run:` step does the same, because it exits 1 over the limit. I have not run this workflow on GitHub itself; the CLI behaviour below is checked locally.
+Without the action wrapper, `node readme-unslop.js --max-score 30 README.md` in a `run:` step does the same, because it exits 1 over the limit.
+
+To warn instead of block, add `continue-on-error: true` to the job step (the job shows a warning and the PR can still merge). I don't know which default people prefer; if you have a view, open an issue. I have not run this workflow on GitHub itself; the CLI behaviour below is checked locally.
 
 ```
 $ node readme-unslop.js examples/before.md; echo $?
