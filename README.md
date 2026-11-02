@@ -35,6 +35,33 @@ $ readme-unslop examples/after.md    # score 0/100
 
 [examples/after.md](examples/after.md) is the same project rewritten with plain statements and a real usage example. Nothing in it is invented: the writer has to supply the true facts.
 
+## GitHub Actions
+
+Fail a pull request when the README looks sloppy. Save as `.github/workflows/readme.yml`:
+
+```yaml
+name: readme
+on: [pull_request]
+jobs:
+  unslop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: HiegBr/readme-unslop@main
+        with:
+          files: README.md
+          max-score: '30'
+```
+
+Without the action wrapper, `node readme-unslop.js --max-score 30 README.md` in a `run:` step does the same, because it exits 1 over the limit. I have not run this workflow on GitHub itself; the CLI behaviour below is checked locally.
+
+```
+$ node readme-unslop.js examples/before.md; echo $?
+1
+$ node readme-unslop.js examples/after.md; echo $?
+0
+```
+
 ## Claude Code plugin
 
 `.claude-plugin/marketplace.json` is included so the repo can act as a plugin marketplace. Status: partly checked against the current docs (name, owner, plugins array, `source`, `description`). The `skills` field is not confirmed. Treat it as unverified and open an issue if it fails for you.
