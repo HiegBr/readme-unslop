@@ -71,8 +71,11 @@ function lint(text) {
   lines.forEach(l => { if (/^\s*(```|~~~)/.test(l)) { fence = !fence; return; } if (fence || !l.trim()) return; nonEmpty++; if (/^\s*([-*+]|\d+\.)\s/.test(l)) bullets++; });
   if (nonEmpty > 15 && bullets / nonEmpty > 0.55) add('over-bulleted', 1, 6, `${Math.round(100 * bullets / nonEmpty)}% of lines are bullets`, 'Turn some lists into sentences.');
   // bold-label bullets: "- **Fast**: ..."
-  const bl = lines.filter(l => /^\s*[-*]\s+(\*\*[^*]+\*\*|[^\w\s]\s*\*\*[^*]+\*\*)\s*[:\-–—]/.test(l)).length;
-  if (bl >= 3) add('bold-label-bullets', 1, 4, `${bl} bullets in the "**Label**: blurb" pattern`, 'Write one plain sentence per real feature.');
+  const blRe = /^\s*[-*]\s+(\*\*[^*]+\*\*|[^\w\s]\s*\*\*[^*]+\*\*)\s*[:\-–—]/;
+  const blLines = [];
+  fence = false;
+  lines.forEach((l, i) => { if (/^\s*(```|~~~)/.test(l)) { fence = !fence; return; } if (!fence && blRe.test(l)) blLines.push(i + 1); });
+  if (blLines.length >= 3) add('bold-label-bullets', blLines[0], 4, `${blLines.length} bullets in the "**Label**: blurb" pattern`, 'Write one plain sentence per real feature.');
 
   // generic section skeleton
   const titles = secs.map(s => plain(s.title).toLowerCase());
