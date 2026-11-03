@@ -14,6 +14,25 @@ Output looks like this:
       line 7  emoji-heading  Heading "✨ Features" contains an emoji
           fix: Drop the emoji; the heading text is enough.
 
+## Example run
+
+Real output on [examples/before.md](examples/before.md), a made-up AI-style README (trimmed; the full run lists 11 findings, score 38, exit 1):
+
+```
+$ node readme-unslop.js examples/before.md
+examples/before.md: score 38/100 (limit 30)
+  line 1  emoji-heading  Heading "🚀 SuperTask" contains an emoji
+      fix: Drop the emoji; the heading text is enough.
+  line 8  filler-word  Marketing filler: "lightning fast"
+      fix: Say what it does, with a number or an example.
+  line 17  boilerplate-contributing  Contributing is the stock "fork, branch, PR" text
+      fix: Say how to run tests or delete it.
+  line 20  empty-roadmap  Roadmap is generic or very short
+      fix: Link real issues or delete the section.
+  line 8  bold-label-bullets  3 bullets in the "**Label**: blurb" pattern
+      fix: Write one plain sentence per real feature.
+```
+
 ## What it checks
 
 Emoji at the start of headings, more than four badges, marketing words (`seamlessly`, `robust`, `blazing-fast` and about two dozen more), a Screenshots section with no image, a Roadmap or Contributing section that is only stock text, bullet-heavy files, the "**Label**: blurb" bullet pattern, a README whose headings are all stock names, and heavy em dash use.
