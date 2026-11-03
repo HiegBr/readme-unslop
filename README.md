@@ -7,6 +7,7 @@ It is one file of Node with no dependencies. It reads a Markdown file, adds up p
     node readme-unslop.js README.md
     node readme-unslop.js --max-score 20 README.md docs/*.md
     node readme-unslop.js --json README.md
+    # JSON output: [{file, score, max, pass, findings:[{line,rule,message,fix}]}]; exit code is still 1 when a file is over the limit
 
 Output looks like this:
 

@@ -104,7 +104,7 @@ function main(argv) {
   let fail = false; const results = [];
   for (const file of files) {
     let text; try { text = fs.readFileSync(file, 'utf8'); } catch (e) { console.error(`cannot read ${file}`); return 2; }
-    const r = lint(text); r.file = file; results.push(r);
+    const r = lint(text); r.file = file; r.max = max; r.pass = r.score <= max; results.push(r);
     if (r.score > max) fail = true;
     if (!json) {
       console.log(`${file}: score ${r.score}/100 (limit ${max})`);

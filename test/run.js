@@ -13,3 +13,13 @@ console.log('ok');
   assert.strictEqual(f.line,5,'should report first matching line');
   console.log('line ok');
 }
+{
+  const {spawnSync}=require('child_process');
+  const bin=path.join(path.dirname(__dirname),'readme-unslop.js');
+  const o=spawnSync('node',[bin,'--json','--max-score','30',path.join(__dirname,'fixtures','sloppy.md')],{encoding:'utf8'});
+  const j=JSON.parse(o.stdout);
+  assert.strictEqual(o.status,1);
+  assert.strictEqual(j[0].pass,false);
+  assert.strictEqual(j[0].max,30);
+  console.log('json ok');
+}
