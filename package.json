@@ -1,1 +1,29 @@
-{"name":"readme-unslop","version":"0.1.0","description":"Lint READMEs for the AI-generated look","bin":{"readme-unslop":"readme-unslop.js"},"scripts":{"test":"node test/run.js"},"license":"MIT"}
+{
+  "name": "readme-unslop",
+  "version": "0.1.0",
+  "description": "Lint READMEs for the AI-generated look. Zero dependencies.",
+  "bin": {
+    "readme-unslop": "readme-unslop.js"
+  },
+  "scripts": {
+    "test": "node test/run.js"
+  },
+  "license": "MIT",
+  "keywords": [
+    "readme",
+    "lint",
+    "markdown",
+    "ai-slop",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HiegBr/readme-unslop.git"
+  },
+  "files": [
+    "readme-unslop.js",
+    "action.yml",
+    "README.md",
+    "LICENSE"
+  ]
+}
